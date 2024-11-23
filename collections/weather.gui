@@ -1,0 +1,218 @@
+fonts {
+  name: "default"
+  font: "/builtins/fonts/default.font"
+}
+fonts {
+  name: "font"
+  font: "/assets/font/font.font"
+}
+nodes {
+  position {
+    x: 232.0
+    y: 601.0
+  }
+  scale {
+    x: 0.543341
+  }
+  size {
+    x: 960.0
+    y: 80.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "header"
+  inherit_alpha: true
+  alpha: 0.7
+}
+nodes {
+  position {
+    x: -288.97675
+  }
+  scale {
+    x: 1.767771
+  }
+  size {
+    x: 50.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Berlin, Germany"
+  font: "font"
+  id: "city_name"
+  parent: "header"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 338.1474
+  }
+  scale {
+    x: 1.594102
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "November 23, 2024"
+  font: "font"
+  id: "text"
+  parent: "header"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 240.0
+    y: 274.0
+  }
+  scale {
+    y: 1.802275
+  }
+  size {
+    x: 480.0
+    y: 320.0
+  }
+  type: TYPE_BOX
+  id: "current_weather_box"
+  inherit_alpha: true
+  alpha: 0.2
+}
+nodes {
+  position {
+    x: 251.0
+    y: 326.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Feels Like: 15\302\260C"
+  font: "font"
+  id: "feels_like"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 251.0
+    y: 215.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Humidity: 60%"
+  font: "font"
+  id: "humidity"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 251.0
+    y: 287.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Wind Speed: 10 km/h"
+  font: "font"
+  id: "wind_speed"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 251.0
+    y: 248.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Precipitation: 0.2 mm"
+  font: "font"
+  id: "precipitation"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 252.0
+    y: 179.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Sunrise: 07:42"
+  font: "font"
+  id: "sunrise"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 251.0
+    y: 140.0
+  }
+  size {
+    x: 200.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Sunset: 16:02"
+  font: "font"
+  id: "sunset"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 245.0
+    y: 424.0
+  }
+  size {
+    x: 50.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "17\302\260C"
+  font: "font"
+  id: "temperature"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 245.0
+    y: 398.0
+  }
+  size {
+    x: 100.0
+    y: 16.0
+  }
+  type: TYPE_TEXT
+  text: "Partly Cloudy"
+  font: "font"
+  id: "weather_description"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 245.0
+    y: 492.0
+  }
+  size {
+    x: 100.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "weather_icon"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
