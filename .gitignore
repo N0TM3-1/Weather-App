@@ -15,3 +15,6 @@
 /.editor_settings
 /.internal
 /build
+
+#API key
+/modules/api_key.lua
