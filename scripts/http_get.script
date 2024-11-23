@@ -1,0 +1,82 @@
+
+local API_KEY = require("modules/api_key")
+local BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+
+-- Function to get the current device date in "YYYY-MM-DD" format
+local function get_device_date()
+    -- Get the current time as a table
+    local current_time = os.date("*t") -- Local time (*t for table format)
+
+    -- Format the date as "YYYY-MM-DD"
+    local formatted_date = string.format("%04d-%02d-%02d", current_time.year, current_time.month, current_time.day)
+    return formatted_date
+end
+
+-- Fetch weather data
+local function fetch_weather(self, location)
+    -- Get the current date
+    local current_date = get_device_date()
+
+    -- Construct the URL with the current date
+    local url = string.format("%s%s/%s?unitGroup=%s&key=%s", BASE_URL, location, current_date, self.unit_group, API_KEY)
+    pprint("Fetching weather data")
+
+    -- Make the HTTP GET request
+    http.request(url, "GET", function(_, id, response)
+        if response.status == 200 then
+            local data = json.decode(response.response)
+			parse_weather(data)
+        else
+            pprint("Error fetching weather data: " .. response.status)
+        end
+    end)
+end
+
+-- Function to parse and pprint weather data
+function parse_weather(data)
+    -- Extract key information
+    local day = data.days[1] -- Today's weather
+    local location = data.resolvedAddress
+    local date = day.datetime
+    local temp = day.temp
+    local temp_max = day.tempmax
+    local temp_min = day.tempmin
+    local feels_like = day.feelslike
+    local conditions = day.conditions
+    local description = day.description
+    local wind_speed = day.windspeed
+    local humidity = day.humidity
+    local sunrise = day.sunrise
+    local sunset = day.sunset
+    local precipitation = day.precip
+    local precipitation_types = day.preciptype or {}
+
+    -- pprint everything to the console
+    pprint("=== Weather Information ===")
+    pprint("Location: " .. location)
+    pprint("Date: " .. date)
+    pprint("Temperature: " .. temp .. "°C (Feels like: " .. feels_like .. "°C)")
+    pprint("Max Temp: " .. temp_max .. "°C | Min Temp: " .. temp_min .. "°C")
+    pprint("Conditions: " .. conditions)
+    pprint("Description: " .. description)
+    pprint("Humidity: " .. humidity .. "%")
+    pprint("Wind Speed: " .. wind_speed .. " km/h")
+    pprint("Precipitation: " .. precipitation .. " mm")
+    if #precipitation_types > 0 then
+        pprint("Precipitation Types: " .. table.concat(precipitation_types, ", "))
+    else
+        pprint("Precipitation Types: None")
+    end
+    pprint("Sunrise: " .. sunrise .. " | Sunset: " .. sunset)
+    pprint("===========================")
+end
+
+-- Initialize the script
+function init(self)
+    -- Define location and unit preferences
+    self.location = "Berlin" -- Default location
+    self.unit_group = "metric" -- Units: "us" (Imperial) or "metric"
+
+    -- Fetch weather data
+    fetch_weather(self, self.location)
+end
